@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Ionic adasense",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "ionic serve --host 0.0.0.0 --port 8100 --external",
+        "cwd": "/adasense",
+        "env": {
+          "HOME": "/home/node",
+          "PATH": "/home/node/.npm-global/bin:${env:PATH}"
+        },
+        "serverReadyAction": {
+            "pattern": "https://.*:(\\d+)",
+            "uriFormat": "https://adasense.ingeniouskey.com",
+            "action": "openExternally"
+        }
+      }
+    ]
+}
+  

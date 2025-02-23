@@ -1,0 +1,25 @@
+{
+    "name": "AdaSense",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "adasense",
+    "workspaceFolder": "/adasense",
+    "shutdownAction": "stopCompose",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.fontSize": 14,
+                "editor.formatOnSave": false,
+                "workbench.colorTheme": "Andromeda Bordered",
+                "workbench.iconTheme": "material-icon-theme"
+            },
+            "extensions": [
+                "EliverLara.andromeda",
+                "PKief.material-icon-theme",
+                "ms-vscode.js-debug-nightly",
+                "burkeholland.simple-react-snippets"
+            ]
+        }
+    },
+    "remoteUser": "node"
+}

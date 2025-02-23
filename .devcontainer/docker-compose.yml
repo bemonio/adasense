@@ -1,0 +1,44 @@
+version: '3.5'
+
+services:
+  adasense:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: adasense
+    user: "node"
+    working_dir: /adasense
+    command: >
+      bash -c "echo '==== starting ====='
+      && mkdir -p /home/node/.npm-global
+      && npm config set prefix /home/node/.npm-global
+      && export PATH=$PATH:/home/node/.npm-global/bin
+      && npm install -g @ionic/cli @angular/cli @capacitor/android
+      && chown -R node:node /adasense
+      && echo '==== done ====='
+      && sleep infinity"
+    volumes:
+      - ..:/adasense
+    restart: always
+    environment:
+      - HOME=/home/node
+      - PATH=/home/node/.npm-global/bin:$PATH:/home/node/android-sdk/cmdline-tools/latest/bin
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - ANDROID_HOME=/home/node/android-sdk
+      - ANDROID_SDK_ROOT=/home/node/android-sdk
+    networks:
+      - traefik_network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.adasense.rule=Host(`adasense.ingeniouskey.com`)
+      - traefik.http.routers.adasense.entrypoints=websecure
+      - traefik.http.services.adasense.loadbalancer.server.port=8100
+      - traefik.http.routers.adasense.tls=true
+      - traefik.http.routers.adasense.tls.certresolver=myresolver
+    extra_hosts:
+      glitchtip.AdaSense.be: 172.17.0.1
+      api.AdaSense.be: 172.17.0.1
+
+networks:
+  traefik_network:
+    external: true
