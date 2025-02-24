@@ -1,10 +1,11 @@
-FROM node:18
+FROM node:20
 
 # Instalar Java JDK y herramientas esenciales
-RUN apt-get update && apt-get install -y \
-    openjdk-17-jdk \
-    unzip \
-    wget \
+RUN apt-get update && apt-get install -y curl \
+    && curl -fsSL https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | tee /usr/share/keyrings/adoptium-keyring.gpg > /dev/null \
+    && echo "deb [signed-by=/usr/share/keyrings/adoptium-keyring.gpg] https://packages.adoptium.net/artifactory/deb bookworm main" | tee /etc/apt/sources.list.d/adoptium.list \
+    && apt-get update \
+    && apt-get install -y temurin-21-jdk \
     && rm -rf /var/lib/apt/lists/*
 
 # Descargar y configurar Android SDK

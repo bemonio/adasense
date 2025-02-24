@@ -23,7 +23,7 @@ services:
     environment:
       - HOME=/home/node
       - PATH=/home/node/.npm-global/bin:$PATH:/home/node/android-sdk/cmdline-tools/latest/bin
-      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
       - ANDROID_HOME=/home/node/android-sdk
       - ANDROID_SDK_ROOT=/home/node/android-sdk
     networks:
