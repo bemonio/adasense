@@ -1,0 +1,18 @@
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-select [(ngModel)]="selectedCameraId" (ionChange)="startCamera()">
+        <ion-select-option *ngFor="let camera of cameras" [value]="camera.deviceId">
+          {{ camera.label || 'Camera ' + (cameras.indexOf(camera) + 1) }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <video #videoElement autoplay playsinline class="camera-feed"></video>
+      <canvas #canvasElement class="overlay-canvas"></canvas>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,16 @@
+<ion-grid class="log-container">
+  <ion-row class="ion-align-items-center ion-justify-content-between">
+    <ion-col size="8">
+      <h3>Debug Log</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-end">
+      <ion-button size="small" fill="outline" (click)="copyToClipboard()">📋 Copiar</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12">
+      <textarea #logTextarea readonly [value]="logs.join('\n')" class="log-textarea"></textarea>
+    </ion-col>
+  </ion-row>
+</ion-grid>
